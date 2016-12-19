@@ -136,7 +136,7 @@ public class MongoUtils {
                 //System.out.println(cursor.next());
                 Document tobj = (Document) cursor.next();
                 System.out.println(tobj.toJson());
-                result.add(tobj.toJson());
+                result.add(tobj.get("_id").toString());
             }
         } finally {
             cursor.close();

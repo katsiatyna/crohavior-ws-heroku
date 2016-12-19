@@ -90,6 +90,8 @@ public class HeatmapsApiServiceImpl extends HeatmapsApiService {
                 HeatmapGrid obj = mapper.readValue(val, HeatmapGrid.class);
                 obj.setProjectId(projectId);
                 obj.setIntervalMs(interval);
+                obj.setStartTimestamp(startTime);
+                obj.setEndTimestamp(endTime);
                 elements.add(obj);
             }
 
