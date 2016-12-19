@@ -7,65 +7,65 @@ This is a Web Service for the Crohavior project.
 
 1. GET Heatmaps without api_key:
 
-http://localhost:8080/api/heatmaps/1?interval=5&startTime=1224726940000&endTime=1224726960000
+https://crohavior-ws.herokuapp.com/api/heatmaps/1?interval=10&startTime=1224734010000&endTime=1224734045000
 
 expected response: {"apiResponseMessage":{"message":"Parameter api_key has to be provided","type":"error"}}
 
 2. GET Heatmaps correct:
 
-http://localhost:8080/api/heatmaps/1?interval=5&startTime=1224726800000&endTime=1224726960000&api_key=crohavior
+https://crohavior-ws.herokuapp.com/api/heatmaps/1?interval=10&startTime=1224734010000&endTime=1224734045000&api_key=test
 
 expected response: the first page of data
 
 3. GET Heatmaps page 2:
 
-http://localhost:8080/api/heatmaps/1?startTime=1224726800000&endTime=1224726960000&interval=5&pageNmb=2&api_key=crohavior
+https://crohavior-ws.herokuapp.com/api/heatmaps/1?interval=10&startTime=1224734010000&endTime=1224734045000&pageNmb=2&api_key=test
 
-expected response: second page with links to next and prev
+expected response: no content, page is empty
 
 4. GET trajectories batches
 
-http://localhost:8080/api/trajectories/batches/1?api_key=crohavior
+https://crohavior-ws.herokuapp.com/api/trajectories/batches/1?api_key=akmahousing
 
 expected response: list of trajectories with links
 
 5. GET trajectories batch by link from 4.
 
-http://localhost:8080/api/trajectories/1?batchId=ss2008-10-23T02%3A56%3A15e2008-10-23T04%3A56%3A15&api_key=crohavior
+http://crohavior-ws.herokuapp.com/api/trajectories/1?batchId=ss2008-10-23T03%3A53%3A30e2008-10-23T05%3A53%3A30&api_key=akmahousing
 
 expected response: valid list of trajectories
 
 6. GET heatmaps by the link from the trajectories
 
-http://localhost:8080/api/heatmaps/1?startTime=1224726975000&endTime=1224734175000&interval=5&api_key=crohavior
+http://crohavior-ws.herokuapp.com/api/heatmaps/1?startTime=1224734010000&endTime=1224741210000&interval=10&api_key=akmahousing
 
 expected response: heatmaps page 1 with/without data
 
 7. GET User by username
 
-http://localhost:8080/api/users/CROHAVIOR?api_key=crohavior
+http://crohavior-ws.herokuapp.com/api/users/CROHAVIOR?api_key=crohavior
 
 expected response: user with links and embedded projects
 
 8. DELETE user by following the link from the _links
 
-DELETE http://localhost:8080/api/users/CROHAVIOR?api_key=crohavior
+DELETE https://crohavior-ws.herokuapp.com/api/users/CROHAVIOR?api_key=crohavior
 
 expected response: User has to be ADMIN
 
 9. DELETE same user with ADMIN api_key
 
-DELETE http://localhost:8080/api/users/CROHAVIOR?api_key=akmahousing
+DELETE https://crohavior-ws.herokuapp.com/api/users/CROHAVIOR?api_key=akmahousing
 
 expected: works!
 
 10. GET User to check it's deleted
 
-GET http://localhost:8080/api/users/CROHAVIOR?api_key=akmahousing
+GET https://crohavior-ws.herokuapp.com/api/users/CROHAVIOR?api_key=akmahousing
 
 11. Create project
 
-POST http://localhost:8080/api/projects?api_key=akmahousing
+POST https://crohavior-ws.herokuapp.com/api/projects?api_key=akmahousing
 {
 "id":5,
   "projectName": "Demeter",
@@ -81,7 +81,7 @@ expected: OK
 
 12. Update the same project: change id
 
-PUT http://localhost:8080/api/projects/2?api_key=akmahousing
+PUT https://crohavior-ws.herokuapp.com/api/projects/5?api_key=akmahousing
 {
 "id":6,
   "projectName": "Demeter",
@@ -97,11 +97,11 @@ expected: cannot change ID
 
 13. Update correct
 
-PUT http://localhost:8080/api/projects/2?api_key=akmahousing
+PUT https://crohavior-ws.herokuapp.com/api/projects/5?api_key=akmahousing
 
 {
 "id":5,
-  "projectName": "Demeter",
+  "projectName": "Demeter 2.0",
 "minLatitude": 40.333,
 "minLongitude": 161.666, 
 "maxLatitude": 40.666,
@@ -114,9 +114,9 @@ expected: OK
 
 14. GET to check the change
 
-http://localhost:8080/api/projects/2?api_key=akmahousing
+https://crohavior-ws.herokuapp.com/api/projects/5?api_key=akmahousing
 
-expected: Demeter 2.0
+expected: Demeter 2.0 as name
 
 
 
