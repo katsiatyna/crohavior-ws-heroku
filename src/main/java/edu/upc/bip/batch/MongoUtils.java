@@ -107,7 +107,7 @@ public class MongoUtils {
             ServerAddress serverAddress = new ServerAddress("ds135798.mlab.com", 35798);
 
             MongoCredential mongoCredential = MongoCredential.createCredential("katya", "heroku_41659s43", "echo216".toCharArray());
-            MongoClient mongoClient = new MongoClient(serverAddress, Arrays.asList(mongoCredential));
+            client = new MongoClient(serverAddress, Arrays.asList(mongoCredential));
         }
 
        return client;
