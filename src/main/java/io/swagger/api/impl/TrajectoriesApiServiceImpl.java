@@ -3,13 +3,12 @@ package io.swagger.api.impl;
 import com.theoryinpractise.halbuilder.api.Representation;
 import com.theoryinpractise.halbuilder.api.RepresentationFactory;
 import com.theoryinpractise.halbuilder.standard.StandardRepresentationFactory;
-import edu.upc.bip.batch.HBaseUtils;
+import edu.upc.bip.batch.MongoUtils;
 import io.swagger.api.*;
 import io.swagger.api.dal.Utils;
 import io.swagger.model.Batches;
 import io.swagger.model.TrajectoryGrid;
 import io.swagger.model.User;
-import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -43,7 +42,7 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             if (auth == 3) {
                 return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Parameter api_key has to be provided")).build();
             }
-            values = HBaseUtils.getRecordRangeValues(TABLE_NAME, batchId, batchId);
+            values = MongoUtils.getRecordRangeValues(TABLE_NAME, batchId, batchId);
             System.out.println(values);
             if (values == null || values.size() == 0) {
                 return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Batch does not exist OR the parameter is wrong!")).build();
@@ -119,7 +118,7 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             if (auth == 3) {
                 return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Parameter api_key has to be provided")).build();
             }
-            values = HBaseUtils.getAllRowIDs(TABLE_NAME);
+            values = MongoUtils.getAllRowIDs(TABLE_NAME);
             System.out.println(values);
             Batches batches = new Batches();
             batches.setBatches(values);
@@ -139,8 +138,6 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             }
 
             return Response.ok().entity(trajectoryGridRepr.toString(RepresentationFactory.HAL_JSON)).build();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }

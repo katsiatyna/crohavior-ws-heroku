@@ -137,17 +137,17 @@
     </build>
     <dependencies>
 
-       <!-- <dependency>
+        <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>3.4.0</version>
         </dependency>
-        &lt;!&ndash; https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-core &ndash;&gt;
+        <!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-core -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-core</artifactId>
             <version>3.4.0</version>
-        </dependency>-->
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.mongodb.spark/mongo-spark-connector_2.10 -->
 
         <dependency>
