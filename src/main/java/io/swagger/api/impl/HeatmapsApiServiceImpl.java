@@ -82,11 +82,11 @@ public class HeatmapsApiServiceImpl extends HeatmapsApiService {
             String startDateStr = interval + "s" + sdf.format(new Date(newStartTime));
             String endDateStr = interval + "s" + sdf.format(new Date(newEndTime));
             System.out.println("Start: " + startDateStr + ", End: " + endDateStr);
-            values = MongoUtils.getRecordRangeValues(TABLE_NAME, startDateStr, endDateStr, "data");
+            values = MongoUtils.getRecordRangeValues(TABLE_NAME, startDateStr, endDateStr, null);
             System.out.println(values.size());
             heatmapGridCollection.setNbEl(values.size());
             for (String val : values) {
-                val = "{" + val + "}";
+                val = "{\"data\"" + val.split("\"data\"")[1];
                 HeatmapGrid obj = mapper.readValue(val, HeatmapGrid.class);
                 obj.setProjectId(projectId);
                 obj.setIntervalMs(interval);
