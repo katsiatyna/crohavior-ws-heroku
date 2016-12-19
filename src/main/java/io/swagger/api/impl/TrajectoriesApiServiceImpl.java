@@ -42,7 +42,7 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             if (auth == 3) {
                 return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Parameter api_key has to be provided")).build();
             }
-            values = MongoUtils.getRecordRangeValues(TABLE_NAME, batchId, batchId);
+            values = MongoUtils.getRecordRangeValues(TABLE_NAME, batchId, batchId, "trajectories");
             System.out.println(values);
             if (values == null || values.size() == 0) {
                 return Response.status(Response.Status.BAD_REQUEST).entity(new ApiResponseMessage(ApiResponseMessage.ERROR, "Batch does not exist OR the parameter is wrong!")).build();
@@ -57,7 +57,7 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             trajectoryGrid.setStartTimestamp(startTime.getTime());
             trajectoryGrid.setEndTimestamp(endTime.getTime());
             String val = values.get(0);
-            val = "{" + val.split("\"trajectories\" :")[1];
+            val = "{\"trajectories\"" + val + "}" ;
             System.out.println(val);
             TrajectoryGrid obj = mapper.readValue(val, TrajectoryGrid.class);
             trajectoryGrid.setTrajectories(obj.getTrajectories());

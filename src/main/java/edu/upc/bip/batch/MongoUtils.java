@@ -65,7 +65,7 @@ public class MongoUtils {
         mongoClient.close();
     }
 
-    public static List<String> getRecordRangeValues(String tableName, String startDateStr, String endDateStr) {
+    public static List<String> getRecordRangeValues(String tableName, String startDateStr, String endDateStr, String field) {
         List<String> result = new ArrayList<>();
 
         MongoDatabase database = getClient().getDatabase("heroku_41659s43");
@@ -86,8 +86,8 @@ public class MongoUtils {
 
                 //System.out.println(cursor.next());
                 Document tobj = (Document) cursor.next();
-                System.out.println(tobj.toJson());
-                result.add(tobj.toJson());
+                //System.out.println(tobj.toJson());
+                result.add(tobj.get(field).toString());
             }
         } finally {
             cursor.close();
