@@ -57,7 +57,7 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             trajectoryGrid.setStartTimestamp(startTime.getTime());
             trajectoryGrid.setEndTimestamp(endTime.getTime());
             String val = values.get(0);
-            val = "{\"trajectories\"" + val + "}" ;
+            val = "{" + val + "}" ;
             System.out.println(val);
             TrajectoryGrid obj = mapper.readValue(val, TrajectoryGrid.class);
             trajectoryGrid.setTrajectories(obj.getTrajectories());
