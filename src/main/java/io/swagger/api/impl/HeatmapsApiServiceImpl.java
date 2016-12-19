@@ -86,7 +86,7 @@ public class HeatmapsApiServiceImpl extends HeatmapsApiService {
             System.out.println(values.size());
             heatmapGridCollection.setNbEl(values.size());
             for (String val : values) {
-                val = "{\"data\"" + val + "}";
+                val = "{" + val + "}";
                 HeatmapGrid obj = mapper.readValue(val, HeatmapGrid.class);
                 obj.setProjectId(projectId);
                 obj.setIntervalMs(interval);
