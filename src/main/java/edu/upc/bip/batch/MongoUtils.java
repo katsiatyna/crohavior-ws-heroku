@@ -86,7 +86,7 @@ public class MongoUtils {
 
                 //System.out.println(cursor.next());
                 Document tobj = (Document) cursor.next();
-                //System.out.println(tobj.toJson());
+                System.out.println(tobj.get(field).toString());
                 result.add(tobj.get(field).toString());
             }
         } finally {
