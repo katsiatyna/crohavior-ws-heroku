@@ -56,7 +56,10 @@ public class TrajectoriesApiServiceImpl extends TrajectoriesApiService {
             Date endTime = sdf.parse(idSplit[1]);
             trajectoryGrid.setStartTimestamp(startTime.getTime());
             trajectoryGrid.setEndTimestamp(endTime.getTime());
-            TrajectoryGrid obj = mapper.readValue(values.get(0), TrajectoryGrid.class);
+            String val = values.get(0);
+            val = "{\"trajectories\"" + val.split("\"trajectories\"")[1];
+            System.out.println(val);
+            TrajectoryGrid obj = mapper.readValue(val, TrajectoryGrid.class);
             trajectoryGrid.setTrajectories(obj.getTrajectories());
             trajectoryGrid.setNbTrajectories(obj.getTrajectories().size());
             trajectoryGrid.setProjectId(projectId);

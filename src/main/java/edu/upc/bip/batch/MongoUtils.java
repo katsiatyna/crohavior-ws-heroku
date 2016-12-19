@@ -75,10 +75,7 @@ public class MongoUtils {
         MongoCollection<Document> collection = database.getCollection(tableName);
 
         // make a document and insert it
-        Document doc = new Document("title", "Good Habits")
-                .append("author", "Akbar");
 
-        collection.insertOne(doc);
 
         BasicDBObject query = new BasicDBObject();
         query.put("_id", BasicDBObjectBuilder.start("$gte", startDateStr).add("$lte", endDateStr).get());
@@ -122,11 +119,6 @@ public class MongoUtils {
         // get a handle to the "book" collection
         MongoCollection<Document> collection = database.getCollection(tableName);
 
-        // make a document and insert it
-        Document doc = new Document("title", "Good Habits")
-                .append("author", "Akbar");
-
-        collection.insertOne(doc);
 
         // get it (since it's the only one in there since we dropped the rest earlier on)
         MongoCursor cursor = collection.find().iterator();
